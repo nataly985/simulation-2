@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-Parser');
-// const session = require('session');
 const hc = require('./controller.js');
 const massive = require('massive');
 require('dotenv').config();
@@ -8,6 +7,7 @@ require('dotenv').config();
 const app = express();
 
 app.use( bodyParser.json() );
+
 massive( process.env.CONNECTION_STRING ).then( db => {
     console.log(db)
 app.set( 'db', db)
