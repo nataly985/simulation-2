@@ -5,6 +5,7 @@ import Dashboard from './component/Dashboard/Dashboard';
 import Header from './component/Header/Header';
 import Wizard from './component/Wizard/Wizard';
 import routes from './routes';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -24,5 +25,9 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+function mapStateToProps(state){
+  return{
+    state;
+  }
+}
+export default connect(mapStateToProps)(App);

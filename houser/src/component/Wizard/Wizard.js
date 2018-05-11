@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dashboard from '../Dashboard/Dashboard';
+import axios from 'axios';
 
 class Wizard extends Component {
     constructor() {
@@ -18,6 +19,7 @@ class Wizard extends Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.hanldeChangeZipcode = this.hanldeChangeZipcode.bind(this);
         this.handleChangeCancel = this.handleCancel.bind(this);
+        this.handleChangeComplete = this.handleComplete.bind(this);
     }
 handleChangeName(event){
     this.setState({ changeName: event.target.value });
@@ -36,6 +38,16 @@ hanldeChangeZipcode(event){
 }
 handleChangeCancel(e){
     this.setState({ input: e.target.value})
+    
+}
+handleChangeComplete(e){
+    this.setState({ input: e.target.value})
+    
+}
+componentDidMount() {
+    axios.post('/api/houses').then((response) => {
+      this.setState({ input: response.data })
+    })
 }
     render() {
     
@@ -43,7 +55,8 @@ handleChangeCancel(e){
 
               <div>
                   <Wizard/>
-                  <button onClick={this.handleChangeCancel}>Cancel</button>
+                  <button onClick={this.handleChangeCancel}>Cancel</button> 
+                  <button onClick={this.handleChangeComplete}>Complete</button>                 
                   <input onChange={(e) => this.handleChangeName} type="text"/>
                   <input onChange={(e) => this.handleChangeAddress} type="text"/>
                   <input onChange={(e) => this.handleChangeCity} type="text"/>

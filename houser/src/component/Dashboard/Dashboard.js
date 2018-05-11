@@ -19,7 +19,11 @@ class Dashboard extends Component{
           this.setState({ input: response.data })
         })
     }
-
+    componentDidUpdate() {
+        axios.delete('/api/house/:id').then((response) => {
+          this.setState({ input: response.data })
+        })
+    }
     render() {
         let houses = this.state.houses.map( ( element, index) => {
             return(
