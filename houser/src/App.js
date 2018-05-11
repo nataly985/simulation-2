@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from './component/Dashboard/Dashboard';
+import Header from './component/Header/Header';
+import Wizard from './component/Wizard/Wizard';
+import routes from './routes';
 
 class App extends Component {
   render() {
@@ -13,6 +17,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+       { routes }
+        <Header/>
+       
       </div>
     );
   }
