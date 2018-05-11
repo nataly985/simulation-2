@@ -7,17 +7,13 @@ import Wizard from './component/Wizard/Wizard';
 import routes from './routes';
 import { connect } from 'react-redux';
 
+import { updateName, updateAddress, updateCity, updateState, updateZipcode} from "./ducks/counter";
+
 class App extends Component {
   render() {
+        const{updateName, updateAddress, updateCity, updateState, updateZipcode}=this.props;                
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
        { routes }
         <Header/>
        
@@ -27,7 +23,11 @@ class App extends Component {
 }
 function mapStateToProps(state){
   return{
-    state;
+    name: state.name,
+    address: state.address,
+    city: state.city,
+    state: state.state,
+    zipcode: state.zipcode
   }
 }
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps,{updateName, updateAddress, updateCity, updateState, updateZipcode})(App);

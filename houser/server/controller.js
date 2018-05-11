@@ -1,24 +1,30 @@
-Read:('/api/house', (req,res, next))
-receive: nothing
-send: [{
-    id: 1,
-    name: 'Example',
-    address: '123 Example st',
-    city: 'Orem',
-    state: 'UT',
-    zip: 84320
+var houses = []
 
-}]
-Create:('/api/house')
-// Receive: req.body{
-//     name: '',
-//    address:'',
-//    city: '',
-//    state:'',
-//    zip:
-// }
-Send: status(200);
+module.exports = {
+    read: (req, res) => {
+        const db = req.app.get('db');
 
-DELETE:('/api/house/:id')
-Receive: req.params.id7
-Send: status(200);
+        db.read_house([req.params.id, req.query.desc])
+            .then(() => res.status(200).send('all good'))
+            .catch(() => res.status(500).send("couldn't updated"))
+    },
+    create: (req, res) => {
+        const db = req.app.get('db');
+        const { id, name, address, city, state, zipcode } = req.body;
+
+        db.create_house([req.params.id, req.query.desc])
+            .then(() => res.status(200).send('all good'))
+            .catch(() => res.status(500).send("couldn't updated"))
+
+    },
+    delete: (req, res) => {
+        const db = req.app.get('db');
+        const { params } = req;
+
+        db.houses([params.id])
+            .then(() => res.status(200).send('all good'))
+            .catch(() => res.status(500).send("could't update"));
+    }
+}
+
+
