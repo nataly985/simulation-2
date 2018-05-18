@@ -18,4 +18,4 @@ app.post('/api/house', hc.create);
 app.delete('api/house/:id', hc.delete);
 
 const port = process.env.PORT || 3002
-app.listen( port, () => {console.log (`Server listening on port ${port}.`);})
+app.listen( port, () => {console.log (`Server listening on port ${port}.`)});
